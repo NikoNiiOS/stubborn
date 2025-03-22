@@ -1,0 +1,49 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Stubborn - Backoffice{% endblock %}
+
+{% block body %}
+    {% include '_partials/_header.html.twig'%}
+    <main>
+		<div class='product_add'>
+			{{ form_start(formAdd) }}
+			<div class='product_add_details'>
+				{{ form_row(formAdd.name)}}
+				{{ form_row(formAdd.imageFile)}}
+				{{ form_row(formAdd.price)}}
+				{{ form_row(formAdd.stock_xs)}}
+				{{ form_row(formAdd.stock_s)}}
+				{{ form_row(formAdd.stock_m)}}
+				{{ form_row(formAdd.stock_l)}}
+				{{ form_row(formAdd.stock_xl)}}
+				{{ form_row(formAdd.homepage)}}
+			</div>
+			<button class='btn btn-primary' method='post'>Ajouter</button>
+			{{ form_end(formAdd) }}
+		</div>
+
+
+		{% for product in products %}
+			<div class='product_update'>
+				{{ form_start(productForms[product.id]) }}
+				<div class='product_update_details'>
+					{{ form_row(productForms[product.id].imageFile) }}
+					{{ form_row(productForms[product.id].name) }}
+					{{ form_row(productForms[product.id].price) }}
+					{{ form_row(productForms[product.id].stock_xs) }}
+					{{ form_row(productForms[product.id].stock_s) }}
+					{{ form_row(productForms[product.id].stock_m) }}
+					{{ form_row(productForms[product.id].stock_l) }}
+					{{ form_row(productForms[product.id].stock_xl) }}
+					{{ form_row(productForms[product.id].homepage) }}
+				</div>
+				<button class='btn btn-primary' type='submit' method='post'>Mettre à jour</button>
+				{{ form_end(productForms[product.id]) }}
+				<a href="{{ path('delete_product', {'id': product.id}) }}">
+					<button class='btn btn-primary' type='button'>Supprimer</button>
+				</a>
+			</div>
+		{% endfor %}
+	</main>
+    {% include '_partials/_footer.html.twig'%}
+{% endblock %}

@@ -1,0 +1,35 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Stubborn - Accueil{% endblock %}
+
+{% block body %}
+	{% include '_partials/_header.html.twig'%}
+	<main>
+		<h1>Nos sweatshirts</h1>
+		<div class='products'>
+			{% for product in homepageProducts%}
+				<div class='products_details'>
+					<img class='products_details_img' src={{asset('images/products/' ~ product.imageName)}}>
+					<div class='infos'>
+
+						<div class='product_infos'>
+							<h2>{{ product.name }}</h2>
+							<h3>{{ product.price|number_format(2, ',', '.') }}
+								€</h3>
+						</div>
+						{% if is_granted('ROLE_USER') %}
+							<a href="{{ path('product_by_id', {'id': product.id}) }}">
+								<button class='btn btn-primary'>Voir</button>
+							</a>
+						{% endif %}
+					</div>
+				</div>
+			{% endfor %}
+		</div>
+		<div>
+			<h2>Stubborn, c'est...</h2>
+			<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed accumsan lorem risus, nec laoreet tortor iaculis et. Proin euismod massa a mattis accumsan. Donec hendrerit ligula ut nisl pretium, at condimentum magna interdum. Ut blandit ex id enim egestas blandit. Quisque auctor feugiat orci id cursus. Curabitur lobortis tincidunt lacus vel rhoncus. Aliquam sollicitudin lorem vitae dui tristique, vitae ultrices magna suscipit. Quisque accumsan, sem ac tincidunt dictum, erat turpis convallis orci, et vestibulum nisi enim sit amet tellus. Vestibulum scelerisque vel leo eu porttitor. Maecenas condimentum gravida velit non consectetur.</p>
+		</div>
+	</main>
+	{% include '_partials/_footer.html.twig'%}
+{% endblock %}
