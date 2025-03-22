@@ -1,0 +1,32 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Stubborn - {{product.name}}{% endblock %}
+
+{% block body %}
+{% include '_partials/_header.html.twig'%}
+	<main>
+		<div class='product'>
+			<img class='product_img' src={{asset('images/products/' ~ product.imageName)}}>
+			<div class='product_display'>
+				<div class='product_details'>
+					<div class='product_details_infos'>
+						<h2>{{ product.name }}</h2>
+						<h3>{{ product.price|number_format(2, ',', '.') }}
+							€</h3>
+					</div>
+					<form method="post" action="{{ path('cart_add', {id : product.id}) }}">
+						<select name="size" class='form-select'>
+							<option value="">Taille</option>
+							<option value="XS">XS</option>
+							<option value="S">S</option>
+							<option value="M">M</option>
+							<option value="L">L</option>
+							<option value="XL">XL</option>
+						</select>
+						<button type="submit" class='btn btn-primary w-100'>Ajouter au panier</button>
+					</form>
+				</div>
+			</div>
+		</main>
+		{% include '_partials/_footer.html.twig'%}
+{% endblock %}

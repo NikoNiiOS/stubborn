@@ -1,0 +1,19 @@
+<header>
+	<div class='hero'>
+		<a href="/"><img class='logo' src="..\..\public\images\Logo.png" class="logo"></a>
+		<h3 class='slogan'>Don't compromise on your look</h3>
+	</div>
+	<nav>
+		{% set current_path = app.request.pathinfo %}
+        {% if is_granted('ROLE_USER') %}
+            <a href="/" class="{{ current_path == '/' ? 'active' : '' }}">Accueil</a>
+            <a href="/product" class="{{ current_path starts with '/product' ? 'active' : '' }}">Boutique</a>
+            <a href="/cart" class="{{ current_path == '/cart' ? 'active' : '' }}">Panier</a>
+            <a href="/logout">Se déconnecter</a>
+        {% else %}
+            <a href="/" class="{{ current_path == '/' ? 'active' : '' }}">Accueil</a>
+            <a href="/register" class="{{ current_path == '/register' ? 'active' : '' }}">S'inscrire</a>
+            <a href="/login" class="{{ current_path == '/login' ? 'active' : '' }}">Se connecter</a>
+        {% endif %}
+	</nav>
+</header>

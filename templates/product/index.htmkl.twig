@@ -1,0 +1,69 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Stubborn - Boutique{% endblock %}
+
+{% block body %}
+	{% include '_partials/_header.html.twig'%}
+	<main>
+		<h1>Nos sweatshirts</h1>
+		<div class='products_display'>
+			<div class='filter'>
+				<select onchange='priceChoice(this.value)'>
+					<option value="">Fourchette de prix</option>
+					<option value="1">10 à 30 €</option>
+					<option value="2">30 à 35 €</option>
+					<option value="3">35 à 50 €</option>
+				</select>
+			</div>
+			<div class='products'>
+				{% for product in products %}
+					<div class='products_details'>
+						<img class='products_details_img' src={{asset('images/products/' ~ product.imageName)}}>
+						<div class='infos'>
+							<div class='product_infos'>
+								<h2>{{ product.name }}</h2>
+								<h3>{{ product.price|number_format(2, ',', '.') }}
+									€</h3>
+							</div>
+							<a href="{{ path('product_by_id', {'id': product.id}) }}">
+								<button class='products_btn btn btn-primary w-100'>Voir</button>
+							</a>
+						</div>
+					</div>	
+				{% endfor %}
+			</div>
+		</div>
+	</main>
+	<script>
+	function priceChoice(value) {
+    fetch(`/filter-products?priceRange=${value}`)
+        .then(response => response.json())
+        .then(data => {
+            const productsContainer = document.querySelector('.products');
+            productsContainer.innerHTML = '';
+
+            data.forEach(product => {
+                const productDiv = document.createElement('div');
+                productDiv.classList.add('products_details');
+
+                productDiv.innerHTML = `
+                    <img class='products_details_img' src="/images/products/${product.imageName}">
+					<div class='infos'>
+						<div class='product_infos'>
+                    		<h2>${product.name}</h2>
+                    		<h3>${product.price} €</h3>
+						</div>
+                    	<a href="/product/${product.id}">
+                        	<button class='btn btn-primary w-100'>Voir</button>
+                    	</a>
+					<div>
+                `;
+
+                productsContainer.appendChild(productDiv);
+            });
+        })
+        .catch(error => console.error('Error:', error));
+}
+</script>
+	{% include '_partials/_footer.html.twig'%}
+{% endblock %}
