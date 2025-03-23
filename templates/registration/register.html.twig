@@ -1,9 +1,11 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Stubborn - Créer un compte{% endblock %}
+{% block title %}Stubborn - Créer un compte
+{% endblock %}
+
 
 {% block body %}
-    {% include '_partials/_header.html.twig'%}
+	{% include '_partials/_header.html.twig'%}
 	<main>
 		{% for flash_error in app.flashes('verify_email_error') %}
 			<div class="alert alert-danger" role="alert">{{ flash_error }}</div>
