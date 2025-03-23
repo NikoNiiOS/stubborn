@@ -11,7 +11,9 @@ use App\Entity\Product;
 
 class HomeController extends AbstractController
 {
-    #[Route('/home', name: 'app_home')]
+    /**
+     * @Route("/", name="home")
+     */
     public function home(ManagerRegistry $manager): Response
     {
         $homepageProducts = $manager->getRepository(Product::class)->findBy(array('homepage'=>true));

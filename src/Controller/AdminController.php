@@ -14,7 +14,6 @@ use App\Form\ProductType;
 
 class AdminController extends AbstractController
 {
-    #[Route('/admin', name: 'admin')]
     //#[OA\Post(
         //path: '/admin',
         //tags: ['Admin'],
@@ -27,7 +26,9 @@ class AdminController extends AbstractController
             //)
         //]
     //)]
-
+    /**
+     * @Route("/admin", name="admin")
+     */
     public function add(Request $request, ManagerRegistry $manager): Response
     {
 

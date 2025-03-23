@@ -18,13 +18,14 @@ class ProductController extends AbstractController
     /**
      * Permet de récupérer tous les produits
      */
-    #[Route('/product', name: 'app_product', methods: ["GET"])]
-    #[OA\Response(
-        response: 200,
-        description: 'Returns all the products',
-    )]
-    #[OA\Tag(name: 'Product')]
-
+    //#[OA\Response(
+        //response: 200,
+        //description: 'Returns all the products',
+    //)]
+    //#[OA\Tag(name: 'Product')]
+    /**
+     * @Route("/product", name="app_product", methods={"GET"})
+     */
     public function index(ManagerRegistry $manager): Response
     {
 
@@ -38,13 +39,14 @@ class ProductController extends AbstractController
     /**
      * Permet de récupérer un produit par son id.
      */
-
-    #[Route('/product/{id}', name: 'product_by_id', methods: ["GET"])]
-    #[OA\Response(
-        response: 200,
-        description: 'Returns one products by its id',
-    )]
-    #[OA\Tag(name: 'Product')]
+    //#[OA\Response(
+        //response: 200,
+        //description: 'Returns one products by its id',
+    //)]
+    //#[OA\Tag(name: 'Product')]
+    /**
+     * @Route("/product/{id}", name="product_by_id", methods={"GET"})
+     */
     public function productById(int $id, ManagerRegistry $manager): Response
     {
         $product = $manager->getRepository(Product::class)->findOneBy(['id' => $id]);
@@ -56,13 +58,14 @@ class ProductController extends AbstractController
     /**
      * Permet de récupérer les produits via une fourchette de prix.
      */
-
-    #[Route("/filter-products", name: "filter_products", methods: ["GET"])]
-    #[OA\Response(
-        response: 200,
-        description: 'Returns the products according to their price',
-    )]
-    #[OA\Tag(name: 'Product')]
+    //#[OA\Response(
+        //response: 200,
+        //description: 'Returns the products according to their price',
+    //)]
+    //#[OA\Tag(name: 'Product')]
+    /**
+     * @Route("/filter-products", name="filter_products", methods={"GET"})
+     */
     public function filterProducts(Request $request, ProductRepository $productRepository)
     {
         $priceRange = (int) $request->query->get('priceRange');

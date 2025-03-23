@@ -12,7 +12,6 @@ use App\Service\CartService;
 
 class CartController extends AbstractController
 {
-    #[Route('/cart', name: 'app_cart')]
     //#[OA\Get(
         //path: '/cart',
         //tags: ['Cart'],
@@ -25,6 +24,9 @@ class CartController extends AbstractController
             //)
         //]
     //)]
+    /**
+     * @Route("/cart", name="app_cart")
+     */
     public function index(CartService $cartService): Response
     {
         return $this->render('cart/index.html.twig', [
@@ -32,7 +34,6 @@ class CartController extends AbstractController
         ]);
     }
 
-    #[Route('/cart/add/{id<\d+>}', name: 'cart_add')]   
     //#[OA\Post(
         //path: '/cart/add/{id}',
         //tags: ['Cart'],
@@ -61,6 +62,9 @@ class CartController extends AbstractController
             //)
         //]
     //)]
+    /**
+     * @Route("/cart/add/{id<\d+>}", name="cart_add")
+     */
     public function add(Request $request, CartService $cartService, int $id): Response
     {
         $size = $request->request->get('size');
@@ -71,7 +75,6 @@ class CartController extends AbstractController
         ]);
     }
 
-    #[Route('/cart/removeOne/{id<\d+>}', name: 'cart_remove_one')]
     //#[OA\Post(
         //path: '/cart/removeOne/{id}',
         //tags: ['Cart'],
@@ -100,6 +103,9 @@ class CartController extends AbstractController
             //)
         //]
     //)]
+    /**
+     * @Route("/cart/removeOne/{id<\d+>}", name="cart_remove_one")
+     */
     public function removeOne(Request $request, CartService $cartService, int $id): Response
     {
         $size = $request->request->get('size');
@@ -110,8 +116,6 @@ class CartController extends AbstractController
         ]);
     }
 
-
-    #[Route('/cart/remove/{id<\d+>}', name: 'cart_remove')]
     //#[OA\Post(
         //path: '/cart/remove/{id}',
         //tags: ['Cart'],
@@ -140,6 +144,9 @@ class CartController extends AbstractController
             //)
         //]
     //)]
+    /**
+     * @Route("/cart/remove/{id<\d+>}", name="cart_remove")
+     */
     public function removeFromCart(Request $request, CartService $cartService, int $id): Response
     {
         $size = $request->request->get('size');
@@ -151,7 +158,6 @@ class CartController extends AbstractController
         ]);
     }
 
-    #[Route('/cart/removeAll', name: 'cart_removeAll')]
     //#[OA\Post(
         //path: '/cart/removeAll',
         //tags: ['Cart'],
@@ -164,6 +170,9 @@ class CartController extends AbstractController
             //)
         //]
     //)]
+    /**
+     * @Route("/cart/removeAll", name="cart_removeAll")
+     */
     public function removeAll(CartService $cartService): Response
     {
         $cartService->removeAll();
