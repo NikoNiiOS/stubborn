@@ -12,7 +12,6 @@ use App\Service\CartService;
 
 class CartController extends AbstractController
 {
-    #[Route('/cart', name: 'app_cart')]
     //#[OA\Get(
         //path: '/cart',
         //tags: ['Cart'],
@@ -25,6 +24,9 @@ class CartController extends AbstractController
             //)
         //]
     //)]
+    /**
+     * @Route("/cart", name="app_cart")
+     */
     public function index(CartService $cartService): Response
     {
         return $this->render('cart/index.html.twig', [

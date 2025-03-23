@@ -18,13 +18,14 @@ class ProductController extends AbstractController
     /**
      * Permet de récupérer tous les produits
      */
-    #[Route('/product', name: 'app_product', methods: ["GET"])]
     #[OA\Response(
         response: 200,
         description: 'Returns all the products',
     )]
     #[OA\Tag(name: 'Product')]
-
+    /**
+     * @Route("/product", name="app_product", methods={"GET"})
+     */
     public function index(ManagerRegistry $manager): Response
     {
 

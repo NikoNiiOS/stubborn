@@ -102,7 +102,6 @@ class CartService
                     'size' => $item['size'],
                 ];
             }
-            // dd($cartData);
         }
 
         return $cartData;

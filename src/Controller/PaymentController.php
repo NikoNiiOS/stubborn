@@ -12,7 +12,9 @@ use App\Service\StripeService;
 
 class PaymentController extends AbstractController
 {
-    #[Route('/stripe', name: 'app_stripe')]
+    /**
+     * @Route("/stripe", name="app_stripe")
+     */
     public function index(Request $request, StripeService $stripeService): RedirectResponse
     {
         Stripe::setApiKey($_ENV["STRIPE_SECRET"]);

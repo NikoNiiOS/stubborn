@@ -10,7 +10,6 @@ use OpenApi\Attributes as OA;
 
 class SecurityController extends AbstractController
 {
-    #[Route(path: '/login', name: 'app_login')]
     //#[OA\Get(
         //path: '/login',
         //tags: ['Security'],
@@ -27,6 +26,9 @@ class SecurityController extends AbstractController
             //)
         //]
     //)]
+    /**
+     * @Route("/login", name="app_login")
+     */
     public function login(AuthenticationUtils $authenticationUtils): Response
     {
         if ($this->getUser()) {
