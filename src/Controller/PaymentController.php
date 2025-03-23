@@ -26,12 +26,16 @@ class PaymentController extends AbstractController
         return new RedirectResponse($checkout_session->url);
     }
 
-    #[Route('/success', name: 'stripe_success')]
+    /**
+     * @Route("/success", name="stripe_success")
+     */
     public function success() {
         return $this->render('stripe/success.html.twig');
     }
 
-    #[Route('/cancel', name: 'stripe_cancel')]
+    /**
+     * @Route("/cancel", name="stripe_cancel")
+     */
     public function cancel() {
         return $this->render('stripe/cancel.html.twig');
     }
