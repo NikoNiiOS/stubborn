@@ -7,28 +7,29 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Request;
 use Doctrine\Persistence\ManagerRegistry;
-use OpenApi\Attributes as OA;
+use OpenApi\Annotations as OA;
 
 use App\Entity\Product;
 use App\Form\ProductType;
 
 class AdminController extends AbstractController
 {
-    //#[OA\Post(
-        //path: '/admin',
-        //tags: ['Admin'],
-        //summary: 'Ajouter un produit',
-        //description: 'Affiche la page d\'administration permettant d\'ajouter et de gérer les produits.',
-        //responses: [
-            //new OA\Response(
-                //response: 200,
-                //description: 'Page d\'administration affichée'
-            //)
-        //]
-    //)]
+    
     /**
-     * @Route("/admin", name="admin")
-     */
+    * @Route("/admin", name="admin")
+    * @OA\Post(
+    *     path="/admin",
+    *     tags={"Admin"},
+    *     summary="Ajouter un produit",
+    *     description="Affiche la page d'administration permettant d'ajouter et de gérer les produits.",
+    *     responses={
+    *         @OA\Response(
+    *             response=200,
+    *             description="Page d'administration affichée"
+    *         )
+    *     }
+    * )
+    */
     public function add(Request $request, ManagerRegistry $manager): Response
     {
 
